@@ -1,0 +1,11 @@
+Prepare staging environment,create-environment
+Extract data from Equation,extract-data
+Load Equation data into Staging,load-data
+Transform Equation Customer Data,transform-customer
+Transform Equation CASA Data,transform-casa
+Export Transformed Customer Data,export-customer
+Export Transformed CASA Data,export-casa
+Upload Customer Data to Essence,upload-customer
+Upload CASA Data to Essence,upload-casa
+Verify Essence Customer Data Against Equation,verify-customer
+Verify Essence CASA Data Against Equation,verify-casa

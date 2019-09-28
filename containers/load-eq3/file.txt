@@ -1,0 +1,10 @@
+10,GFPF,smartloader
+20,SCPF,smartloader
+30,C8PF,smartloader
+40,S5PF,smartloader
+50,C5PF,smartloader
+60,SX20LF,smartloader
+70,SVPF,smartloader
+80,BGPF,smartloader
+90,RJPF,smartloader
+80,RIPF,smartloader

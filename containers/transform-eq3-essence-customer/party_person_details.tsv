@@ -1,0 +1,50 @@
+Column_Name	DataType	MaxLength	Mapping Type	Mapping Value
+PartyId	VARCHAR	30	PASSTHRU	GFPF.GFCPNC
+PartyName	VARCHAR	300	PASSTHRU	GFPF.GFCUN
+FirstName	VARCHAR	60		
+MiddleName	VARCHAR	60		
+LastName	VARCHAR	60		
+Suffix	VARCHAR	50		
+Title	VARCHAR	50	PASSTHRU	CONVERT_CODES('TITLE', SX20LF.SVCSA)
+NationalIDType	VARCHAR	50	PASSTHRU	CONVERT_CODES('CUST_NATIONALIDTYPE', BGPF.BG0001)
+NationalID	VARCHAR	50	PASSTHRU	BGPF.BG0002
+DateOfBirth	DATE		PASSTHRU	NVL(EQ3_TO_ORACLE_DATE(BGPF.BG0007),CONVERT_CODES('CONSTANT','DEF_BIRTH_DATE'))
+IsPreviousIOrOtherName	VARCHAR	1	CONSTANT	N
+EmploymentStatus	VARCHAR	50	PASSTHRU	CONVERT_CODES('EMP_STATUS', BGPF.BG0010)
+CivilStatus	VARCHAR	50	PASSTHRU	CONVERT_CODES('CONSTANT', 'CIVIL_STATUS')
+Gender	VARCHAR	50	PASSTHRU	CONVERT_CODES('CUST_GENDER', BGPF.BG0008)
+CountryOfBirth	VARCHAR	20	PASSTHRU	CONVERT_CODES('COUNTRY', GFPF.GFCNAP)
+CountryOfResidence	VARCHAR	20	PASSTHRU	CONVERT_CODES('COUNTRY', GFPF.GFCNAL)
+CountryOfCitizenship	VARCHAR	20	PASSTHRU	CONVERT_CODES('COUNTRY', GFPF.GFCNAP)
+BirthTown	VARCHAR	100		
+ResidentStatus	VARCHAR	50	PASSTHRU	case when  GFPF.GFCNAP <> GFPF.GFCNAL THEN 'Non Resident' else 'Resident' end
+NumberOfDependents	SMALLINT			
+MotherMaidenName	VARCHAR	100	PASSTHRU	BGPF.BG0033
+FatherName	VARCHAR	100	PASSTHRU	BGPF.BG0034
+SpouseName	VARCHAR	100	PASSTHRU	BGPF.BG0035
+SurNameAtBirth	VARCHAR	25		
+EducationLevel	VARCHAR	50		
+JobTitle	VARCHAR	50		
+NameOfTheEmployer	VARCHAR	256		
+EmploymentStartDate 	DATE			
+EmploymentEndDate	DATE			
+PaymentMethod	VARCHAR	50		
+PaymentFrequency	VARCHAR	50		
+CurrencyCode	VARCHAR	3		
+GrossAnnualSalary	DECIMAL(24,6)			
+EmploymentType	VARCHAR	50		
+TypeOfBusiness	VARCHAR	50		
+EmployeeID	VARCHAR	50		
+ContarctEndDate	DATE			
+EmployersTelephone	VARCHAR	20		
+BuildingNameORNumber	VARCHAR	255		
+AddressId	VARCHAR	20		
+GrandfatherName	VARCHAR	25		
+LastApprovedBy	VARCHAR	30		
+LastModifiedBy	VARCHAR	30		
+LastUpdatedDateTime	TIMESTAMP			
+EmployerPartyId	VARCHAR	30		
+			__JOIN__	from map_cif map_cif
+			__JOIN__	inner join gfpf on leg_cust_id = gfpf.gfcus||gfpf.gfclc
+			__JOIN__	left join bgpf on gfpf.gfcus = bgpf.bgcus and nvl(gfpf.gfclc,' ') = nvl(bgpf.bgclc, ' ')
+			__JOIN__	left join VW_SXPRIM sx20lf on gfpf.gfcus = sx20lf.sxcus and nvl(gfpf.gfclc,' ') = nvl(sx20lf.sxclc, ' ')

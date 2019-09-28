@@ -1,0 +1,2 @@
+10,profile-eq3-customer-casa.sql,sql
+20,pr_eq3_volume,spool
