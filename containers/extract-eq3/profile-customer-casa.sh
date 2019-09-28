@@ -1,10 +1,8 @@
-source $PRECISION100_FOLDER/conf/.sql-loader.env.sh
-SPOOL_FILE=$PRECISION100_WORK_FOLDER/spool/pr_extract_volume.csv
-mkdir -p $PRECISION100_WORK_FOLDER/spool
+SPOOL_FILE=$PRECISION100_OPERATOR_SPOOL_FOLDER/pr_extract_volume.csv
 
 function make_line() {
   local file=$1
-  local file_count=$(wc -l $SQLLDR_INPUT/$file.dat | cut -d ' ' -f 1)
+  local file_count=$(wc -l $PRECISION100_OPERATOR_SMART_LOADER_INPUT_FOLDER/$file.dat | cut -d ' ' -f 1)
 
   echo "$file,$file_count"
 }
